@@ -3,7 +3,7 @@
 describe("Central de Atendimento ao Cliente TAT", function () {
   beforeEach(function() {
     cy.visit("./cypress-basico-v2/src/index.html");
-    
+
   });
 
   it("CT001 verifica o título da aplicação", function () {  
@@ -57,13 +57,13 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("#open-text-area").should('be.visible').type("Muito obrigado pelo curso" , {delay: 2}).clear().should('have.value','');
     cy.get('button[type="submit"]').click();
     cy.get('.error > strong').should("be.visible");
-  })
+  });
 
   it("CT007 exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", function(){
     cy.get('button[type="submit"]').click();
     cy.get('.error > strong').should("be.visible");
+  });
+
+  it("008",function(){
   })
-
-  it("008",funci)
-
 });
