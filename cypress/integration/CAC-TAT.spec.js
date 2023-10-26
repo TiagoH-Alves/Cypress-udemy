@@ -25,7 +25,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("#firstName").should('be.visible').type("Tiago");
     cy.get("#lastName").should('be.visible').type("Alves");
     cy.get("#phone").should('be.visible').type("11980734020");
-    cy.get("#open-text-area").should('be.visible').type("Muito obrigado pelo curso", {delay: 0});
+    cy.get("#open-text-area").should('be.visible').type("Muito obrigado pelo curso", {delay: 2});
     cy.get('button[type="submit"]').click();
     cy.get('.error > strong').should('be.visible');
   });
@@ -37,4 +37,33 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get("#phone").should('be.visible').type("Tiago");
     cy.get('#phone').should('have.value','');
   });
+
+  it("CT005 verificar mensagem de erro quando o campo telefone nao é preenchido", function(){
+    cy.get("#firstName").should('be.visible').type("Tiago");
+    cy.get("#lastName").should('be.visible').type("Alves");
+    cy.get("#email").should('be.visible').type("tiagoh_alves@hotmail.com",);
+    cy.get('#phone-checkbox').click();
+    cy.get('.phone-label-span').should('be.visible');
+    cy.get("#open-text-area").should('be.visible').type("Muito obrigado pelo curso", {delay: 2});
+    cy.get('button[type="submit"]').click();
+    cy.get('.error > strong').should('be.visible');
+  });
+
+  it("CT006 preenche os campos obrigatotios e limpa", function () {
+    cy.get("#firstName").should('be.visible').type("Tiago").should('have.value','Tiago').clear().should('have.value','');
+    cy.get("#lastName").should('be.visible').type("Alves").should('have.value','Alves').clear().should('have.value','');
+    cy.get("#email").should('be.visible').type("tiagoh_alves@hotmail.com").clear().should('have.value','');
+    cy.get("#phone").should('be.visible').type("11980734020").clear().should('have.value','');
+    cy.get("#open-text-area").should('be.visible').type("Muito obrigado pelo curso" , {delay: 2}).clear().should('have.value','');
+    cy.get('button[type="submit"]').click();
+    cy.get('.error > strong').should("be.visible");
+  })
+
+  it("CT007 exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", function(){
+    cy.get('button[type="submit"]').click();
+    cy.get('.error > strong').should("be.visible");
+  })
+
+  it("008",funci)
+
 });
