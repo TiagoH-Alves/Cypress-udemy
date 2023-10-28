@@ -60,10 +60,32 @@ describe("Central de Atendimento ao Cliente TAT", function () {
   });
 
   it("CT007 exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", function(){
-    cy.get('button[type="submit"]').click();
+    cy.get('button[type="submit"]').should("be.visible").click();
     cy.get('.error > strong').should("be.visible");
   });
 
-  it("008",function(){
+  it("CT008 Envia o formulario com comando customizado ",function(){
+    cy.fillMandatoryFieldsAndSubmit()
   })
+
+  it("CT009 clicar no botão enivar utilizando o Contains", function(){
+    cy.contains('button','Enviar').click();
+    cy.get('.error > strong').should("be.visible");
+  })
+
+  /*it.("CT009 enviando formulario com dados sensiveis", function (){
+    const firstName = Cypress.env('user_name');
+    cy.log (firstName)
+    const lastName = Cypress.env('last_name');
+    
+    cy.get("#firstName").should('be.visible').type(firstName);
+    cy.get("#lastName").should('be.visible').type(lastName);
+    cy.get("#email").should('be.visible').type("tiagoh_alves@hotmail.com",);
+    cy.get("#phone").should('be.visible').type("11980734020");
+    cy.get("#open-text-area").should('be.visible').type("enviando dados sensiveis");
+    cy.get('button[type="submit"]').click();
+    cy.get('.success > strong').should("be.visible");
+  })
+  */
+
 });
