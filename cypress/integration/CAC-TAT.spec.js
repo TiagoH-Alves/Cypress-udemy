@@ -106,7 +106,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get('.success > strong').should("be.visible");
   });
 
-  it("CT010 Enviar o formulario utilizando uma selecao suspença", function(){
+  it("CT013 Enviar o formulario utilizando uma selecao com check", function(){
     cy.get("#firstName").should('be.visible').type("Tiago");
     cy.get("#lastName").should('be.visible').type("Alves");
     cy.get("#email").should('be.visible').type("tiagoh_alves@hotmail.com",);
@@ -117,20 +117,47 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get('button[type="submit"]').click();
     cy.get('.success > strong').should("be.visible");
   });
-  
-  /*it.("CT009 enviando formulario com dados sensiveis", function (){
-    const firstName = Cypress.env('user_name');
-    cy.log (firstName)
-    const lastName = Cypress.env('last_name');
-    
-    cy.get("#firstName").should('be.visible').type(firstName);
-    cy.get("#lastName").should('be.visible').type(lastName);
+
+  it("CT014 Enviar o formulario desmarcando uma selecao com checkbox", function(){
+    cy.get("#firstName").should('be.visible').type("Tiago");
+    cy.get("#lastName").should('be.visible').type("Alves");
     cy.get("#email").should('be.visible').type("tiagoh_alves@hotmail.com",);
     cy.get("#phone").should('be.visible').type("11980734020");
-    cy.get("#open-text-area").should('be.visible').type("enviando dados sensiveis");
+    cy.get('#product').select('Cursos').should('have.value','cursos')
+    cy.get('input[type="radio"][value="feedback"]').check().should("have.value","feedback");
+    cy.get('input[type="checkbox"]').check()
+    cy.get('input[type="checkbox"]').uncheck().should("not.be.checked")
+    cy.get("#open-text-area").should('be.visible').type( "muito obrigado pelo curso" , {delay: 0});
     cy.get('button[type="submit"]').click();
     cy.get('.success > strong').should("be.visible");
-  })
-  */
+  });
+  
+  it("CT015 Enviar o formulario enviando um arquivo", function(){
+    cy.get("#firstName").should('be.visible').type("Tiago");
+    cy.get("#lastName").should('be.visible').type("Alves");
+    cy.get("#email").should('be.visible').type("tiagoh_alves@hotmail.com",);
+    cy.get("#phone").should('be.visible').type("11980734020");
+    cy.get('#product').select('Cursos').should('have.value','cursos')
+    cy.get('input[type="radio"][value="feedback"]').check().should("have.value","feedback");
+    cy.get('input[type="checkbox"]').check()
+    cy.get("#open-text-area").should('be.visible').type( "muito obrigado pelo curso" , {delay: 0});
+    cy.get('input[type="file"]#file-upload').selectFile("./cypress-basico-v2/src/index.html")
+    .should(function ($input){
+      expect($input[0].files[0].name).to.equal("index.html")
+    })
+    cy.get('button[type="submit"]').click();
+    cy.get('.success > strong').should("be.visible");
+  });
 
-});
+  // simulando o envio de um arquivo, como se estivesse arrastando o conteudo 
+  it("CT016 selecione um arquivo utilizando Drag and Drop",function(){
+    cy.get('input[type="file"]#file-upload')
+    .selectFile("./cypress-basico-v2/src/index.html", {action: 'drag-drop'}).should(function ($input){
+      expect($input[0].files[0].name).to.equal("index.html")
+    })
+  })
+
+  it.only("CT017 verificar Poliitica de privacidade" , function () {
+    cy.get('#privacy a').should('have.attr', 'target', '_blank')
+  })
+})
