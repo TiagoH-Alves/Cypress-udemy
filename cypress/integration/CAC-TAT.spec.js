@@ -157,7 +157,21 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     })
   })
 
-  it.only("CT017 verificar Poliitica de privacidade" , function () {
+  it("CT017 verificar Poliitica de privacidade" , function () {
     cy.get('#privacy a').should('have.attr', 'target', '_blank')
+  })
+
+  it("CT018 verificar Politica de privacidade Removendo o Target",function(){
+  cy.get('#privacy a')
+    .invoke("removeAttr", "target")
+    .click()
+    cy.contains('Talking About Testing').should("be.visible")
+  })
+
+  it("CT019 Verificar a politica de privacidade de forma independente",function(){
+    cy.get('#privacy a')
+    .click()
+    cy.visit("./cypress-basico-v2/src/privacy.html")
+    cy.contains('Talking About Testing').should("be.visible")
   })
 })
