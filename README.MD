@@ -9,7 +9,19 @@ Antes de começar, certifique-se de que você tenha as seguintes dependências i
 
 - Node.js: [https://nodejs.org/](https://nodejs.org/)
 
-### Instalando as dependências do projeto
+### Clonando o Projeto
+
+Você pode clonar este projeto do GitHub utilizando o seguinte comando:
+
+```bash
+git clone https://github.com/TiagoH-Alves/cypressFrontEnd.git
+```
+
+Em seguida, navegue até o diretório do projeto:
+
+```bash
+cd cypressFrontEnd
+```
 
 Certifique-se de instalar as dependências do projeto executando o seguinte comando:
 
@@ -54,5 +66,3 @@ A estrutura do projeto Cypress é organizada da seguinte forma:
 - `cypress/fixtures/`: Este diretório é usado para armazenar arquivos de dados usados em seus testes.
 - `cypress/support/`: Você pode definir funções de suporte personalizadas, comandos e configurações aqui.
 ```
-
-Essas alterações tornam o seu README mais claro e fornecem instruções passo a passo para o usuário começar com o projeto e entender sua estrutura. Certifique-se de atualizar os comandos, conforme necessário, para refletir a estrutura do seu projeto.
