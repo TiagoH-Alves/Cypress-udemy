@@ -1,5 +1,3 @@
-O seu README já está bem estruturado, mas algumas melhorias podem ser feitas para torná-lo ainda mais informativo e fácil de seguir. Aqui estão algumas sugestões:
-
 ```markdown
 # Projeto de Automação de Front-End com Cypress
 
@@ -28,6 +26,7 @@ Neste projeto, você pode executar os seguintes comandos:
 ```bash
 npm run cy:open
 ```
+
 Isso abrirá a interface do Cypress, onde você pode selecionar e executar testes interativamente.
 
 2. Abrir a interface de teste do Cypress em modo de visualização móvel:
@@ -35,6 +34,7 @@ Isso abrirá a interface do Cypress, onde você pode selecionar e executar teste
 ```bash
 npm run cy:open:mobile
 ```
+
 Este comando abrirá a interface do Cypress com a configuração de visualização móvel, definindo as dimensões da viewport para 410x860. Útil para testes de responsividade.
 
 3. Executar os testes em segundo plano (headless mode):
